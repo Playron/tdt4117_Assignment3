@@ -3,6 +3,7 @@ import codecs
 import gensim
 import nltk
 import copy
+import string
 
 file = "/Users/perhaagensen/PycharmProjects/tdt4117Oving3/pg3300.txt"
 file2 = "/Users/perhaagensen/PycharmProjects/tdt4117Oving3/pg3300_2.txt"
@@ -39,10 +40,24 @@ def wordRemover(word):
             paragrafListe.append(p)
     return paragrafListe
 
+#task 1.4
+#This function splits every word
 def tokenize(paragraf):
     for i, p in enumerate(paragraf):
         paragraf[i] = p.split(" ")
     return paragraf
+
+def makeWordsLowercase(paragraf):
+    ord = [];
+    for i, p in enumerate(paragraf):
+        for word in p:
+            ord.append(word.lower())
+    return ord
+
+
+
+
+
 
 
 
@@ -50,10 +65,14 @@ def tokenize(paragraf):
 paragraph(file)
 
 wordRemover("Gutenberg")
+lista = paragraph(file)
 
-print(tokenize(wordRemover("Gutenberg")))
+liste = wordRemover("gutenberg")
 
+liste = tokenize(liste)
 
+liste = makeWordsLowercase(liste)
+print(liste)
 
 
 
