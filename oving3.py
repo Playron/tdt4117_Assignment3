@@ -39,6 +39,11 @@ def wordRemover(word):
             paragrafListe.append(p)
     return paragrafListe
 
+def tokenize(paragraf):
+    for i, p in enumerate(paragraf):
+        paragraf[i] = p.split(" ")
+    return paragraf
+
 
 
 
@@ -46,7 +51,7 @@ paragraph(file)
 
 wordRemover("Gutenberg")
 
-
+print(tokenize(wordRemover("Gutenberg")))
 
 
 
