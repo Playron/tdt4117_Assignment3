@@ -40,13 +40,15 @@ def wordRemover(word):
             paragrafListe.append(p)
     return paragrafListe
 
-#task 1.4
+#Task 1.4
 #This function splits every word
 def tokenize(paragraf):
     for i, p in enumerate(paragraf):
         paragraf[i] = p.split(" ")
     return paragraf
 
+
+#Task 1.5
 def makeWordsLowercase(paragraf):
     ord = [];
     for i, p in enumerate(paragraf):
@@ -55,16 +57,32 @@ def makeWordsLowercase(paragraf):
     return ord
 
 
+def removePunc(ordListe):
+    ord = []
+    for word in ordListe:
+        w = ""
+        for bokstav in word:
+            if(string.punctuation + "\n\r\t").__contains__(bokstav):
+                if w != "":
+                    ord.append(w)
+                    w = ""
+                continue
+            w += bokstav
+        if w != "":
+            ord.append(w)
+    return ord
+
+def removve_in_list(paragraf):
+    for i, ord_liste in enumerate(paragraf):
+        words = removePunc(ord_liste)
+        paragraf[i] = words
+    return paragraf
 
 
 
 
 
 
-
-paragraph(file)
-
-wordRemover("Gutenberg")
 lista = paragraph(file)
 
 liste = wordRemover("gutenberg")
@@ -72,7 +90,11 @@ liste = wordRemover("gutenberg")
 liste = tokenize(liste)
 
 liste = makeWordsLowercase(liste)
-print(liste)
+
+liste = removve_in_list(liste)
+
+print(liste[1])
+
 
 
 
