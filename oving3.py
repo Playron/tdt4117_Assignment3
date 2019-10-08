@@ -4,10 +4,12 @@ import gensim
 import nltk
 import copy
 import string
+from nltk.stem.porter import PorterStemmer
 
 file = "/Users/perhaagensen/PycharmProjects/tdt4117Oving3/pg3300.txt"
 file2 = "/Users/perhaagensen/PycharmProjects/tdt4117Oving3/pg3300_2.txt"
 
+stemmer = PorterStemmer()
 random.seed(123)
 
 #Task 1.1
@@ -72,28 +74,41 @@ def removePunc(ordListe):
             ord.append(w)
     return ord
 
-def removve_in_list(paragraf):
+
+
+def remove_in_list(paragraf):
     for i, ord_liste in enumerate(paragraf):
         words = removePunc(ord_liste)
         paragraf[i] = words
     return paragraf
 
 
+#Task 1.6
+def stemWords(paragraf):
+    stemmed_doc = []
 
 
 
 
-lista = paragraph(file)
+
+
+
+
+
+liste = paragraph(file)
+
+print(liste[1])
 
 liste = wordRemover("gutenberg")
 
 liste = tokenize(liste)
+print(liste[1])
 
 liste = makeWordsLowercase(liste)
-
-liste = removve_in_list(liste)
-
 print(liste[1])
+
+liste = removePunc(liste)
+
 
 
 
