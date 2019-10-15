@@ -1,4 +1,5 @@
 from helpers import *
+import gensim
 
 
 file = "/Users/perhaagensen/PycharmProjects/tdt4117Oving3/pg3300.txt"
@@ -11,6 +12,8 @@ random.seed(123)
 
 liste = paragraph(file)
 
+paragraf = paragraph(file)
+
 liste = word_remover("Gutenberg")
 
 liste = tokener(liste)
@@ -21,7 +24,12 @@ liste = remove_punc(liste)
 
 liste = stem(liste)
 
-print(liste[1])
+#Task 2
+
+dict = gensim.corpora.Dictionary(liste)
+
+
+
 
 
 

@@ -1,5 +1,6 @@
 import random
 import codecs
+import gensim
 from nltk.stem.porter import PorterStemmer
 from nltk.probability import FreqDist
 
@@ -117,6 +118,10 @@ def word_frequency(paragraphs, word):
             if w == word:
                 freqDist[w] += 1
     return freqDist
+
+
+
+
 
 
 
