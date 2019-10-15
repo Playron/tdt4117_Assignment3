@@ -1,13 +1,9 @@
 import random
 import codecs
-import gensim
-import copy
-import string
 from nltk.stem.porter import PorterStemmer
 from nltk.probability import FreqDist
 
 file = "/Users/perhaagensen/PycharmProjects/tdt4117Oving3/pg3300.txt"
-#file2 = "/Users/perhaagensen/PycharmProjects/tdt4117Oving3/pg3300_2.txt"
 
 stemmer = PorterStemmer()
 freqDist = FreqDist()
