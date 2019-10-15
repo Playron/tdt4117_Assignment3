@@ -29,6 +29,29 @@ liste = stem(liste)
 dict = gensim.corpora.Dictionary(liste)
 
 
+def stopwords_file_fixer():
+    stopwords = open_file("/Users/perhaagensen/Documents/Høst2019/InfoGjen Øvinger/tdt4117Oving3/common-english-words.txt")
+    file = stopwords.read()
+    stopwordlist = file.split(',')
+    return stopwordlist
+
+def stopword_id(dict, stopwordlist):
+    ids = []
+    for word in stopwordlist:
+        try:
+            ids.append(dict.token2id[word])
+        except:
+            pass
+    return ids
+
+stopwordlist = stopwords_file_fixer()
+
+print(stopword_id(dict, stopwordlist))
+
+print(dict.token2id['a'])
+
+
+
 
 
 
