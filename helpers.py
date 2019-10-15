@@ -100,6 +100,7 @@ def replace_multiple(word, toBeRemoved, res):
 
 #Task 1.6
 
+
 def stem(paragraphs):
     stemmed_paragraphs = []
     #for each paragraph, stem each word in the paragraph
@@ -111,18 +112,15 @@ def stem(paragraphs):
     return stemmed_paragraphs
 
 
-liste = paragraph(file)
-
-liste = word_remover("Gutenberg")
-
-liste = tokener(liste)
-
-liste = lower_case(liste)
-
-liste = remove_punc(liste)
-
-liste = stem(liste)
+#Task 1.7
 
 
-print(liste[1])
+def word_frequency(paragraphs, word):
+    for p in paragraphs:
+        for w in p:
+            if w == word:
+                freqDist[w] += 1
+    return freqDist
+
+
 
