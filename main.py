@@ -2,7 +2,7 @@ from helpers import *
 import gensim
 import string
 
-
+#FILE I AM USING
 file = "/Users/perhaagensen/PycharmProjects/tdt4117Oving3/pg3300.txt"
 
 stemmer = PorterStemmer()
@@ -10,6 +10,8 @@ freqDist = FreqDist()
 random.seed(123)
 
 #Task 1 - Create modified list
+#In this task i create a variable liste, and keeps modififying this list with
+#the functions declered in the helper.py file.
 
 liste = paragraph(file)
 
@@ -23,9 +25,14 @@ liste = lower_case(liste)
 
 liste = remove_punc(liste)
 
+
+#last step of modifying original file. Stem functions only keeps the stem of the words.
 liste = stem(liste)
 
 #Task 2
+#I start to create a string with the stopwords, separated with comma, and then splits all the element by the comma, and adds it
+#to the list stopwordlist. Then I use the gensim framework to create a proper dictionary, and then removes the stopwords
+#as well as creating a bow, and add a system of word ids, and occurences.
 
 stopwords = 'a,able,about,across,after,all,almost,also,am,among,an,and,any,are,as,at,be,because,been,but,by,can,cannot,could,dear,did,do,does,either,else,ever,every,for,from,get,got,had,has,have,he,her,hers,him,his,how,however,i,if,in,into,is,it,its,just,least,let,like,likely,may,me,might,most,must,my,neither,no,nor,not,of,off,often,on,only,or,other,our,own,rather,said,say,says,she,should,since,so,some,than,that,the,their,them,then,there,these,they,this,tis,to,too,twas,us,wants,was,we,were,what,when,where,which,while,who,whom,why,will,with,would,yet,you,your'
 
@@ -37,6 +44,8 @@ ids = stopword_id(dict, stopwordlist)
 
 dict.filter_tokens(ids)
 
+
+#This method returns the bow described over.
 def convert_bow(paragraf):
     bow = []
     for p in paragraf:
@@ -47,10 +56,10 @@ bow = convert_bow(liste)
 
 
 # Task 3.1, 3.2, 3.3
-# the TF-IDF model based on BoW
+# TF-IDF model based on the bow
 tfidf_model = gensim.models.TfidfModel(bow)
 
-# the BoW on the following format for each word: (index, weight)
+# the BoW formated on all words like this (index, weight)
 tfidf_corpus = tfidf_model[bow]
 
 # matrix similarity of the corpus
@@ -63,7 +72,7 @@ lsi_corpus = lsi_model[bow]
 lsi_matrix = gensim.similarities.MatrixSimilarity(lsi_corpus)
 
 # Task 3.5
-# printing the first three topics
+# Printing the first three topics
 topic1 = lsi_model.show_topic(1)
 topic2 = lsi_model.show_topic(2)
 topic3 = lsi_model.show_topic(3)
@@ -82,6 +91,9 @@ print("The three topics are related in the way that they are structured such tha
 #Task 4
 
 #4.1
+#preprocessing function does all the same that we did to the txt file in task 1
+#just making the query simplier.
+
 def preprocessing(query):
     query = query.split()
     stemmed_query = []
@@ -103,6 +115,7 @@ print(query)
 tfidf_query = tfidf_model[query]
 tfidf_index = gensim.similarities.MatrixSimilarity(tfidf_corpus)
 
+# This function prints out the word with highest score weights based on the query
 def print_weights(tfidf_query):
     for weight_tuple in tfidf_query:
         print(dict.get(weight_tuple[0]), ":", weight_tuple[1])

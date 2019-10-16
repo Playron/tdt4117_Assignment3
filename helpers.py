@@ -52,6 +52,7 @@ def word_remover(word):
 
 
 #Task 1.4
+#Tokenizes every paragraf in to seperat words
 
 
 def tokener(paragraf):
@@ -61,6 +62,7 @@ def tokener(paragraf):
 
 
 #Task 1.5
+#Makes all letters lowercase
 
 
 def lower_case(paragraf):
@@ -74,7 +76,11 @@ def lower_case(paragraf):
 
 
 punc = list(string.punctuation)
+print(punc)
+#punk = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~']
+#Needed last bit
 punc.append('\r\n')
+
 def remove_punc(paragraf):
     paras = []
     #goes through each word in the paragraph and removes whitespace, etc.
@@ -91,6 +97,8 @@ def remove_punc(paragraf):
         paras.append(words)
     return paras
 
+
+#Helper function to remove punctuations properly
 def replace_multiple(word, toBeRemoved, res):
     for elem in toBeRemoved:
         if elem in word:
@@ -100,7 +108,7 @@ def replace_multiple(word, toBeRemoved, res):
 
 #Task 1.6
 
-
+#Function uses a stemmer, and removes part of all words, letting just to word stem to
 def stem(paragraphs):
     stemmed_paragraphs = []
     #for each paragraph, stem each word in the paragraph
@@ -114,7 +122,8 @@ def stem(paragraphs):
 
 #Task 1.7
 
-
+#Function counts how many time a word occures in the paragraf
+#Param. paragrahs and word
 def word_frequency(paragraphs, word):
     for p in paragraphs:
         for w in p:
@@ -126,12 +135,13 @@ def word_frequency(paragraphs, word):
 #Task 2
 
 
-
+#Redundant code. Made stopwords to a string. See main
 def stopwords_file_fixer():
     stopwords = open_file("/Users/perhaagensen/Documents/Høst2019/InfoGjen Øvinger/tdt4117Oving3/common-english-words.txt")
     file = stopwords.read()
     stopwordlist = file.split(',')
     return stopwordlist
+
 
 
 
