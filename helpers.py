@@ -1,4 +1,5 @@
 import random
+import string
 import codecs
 import gensim
 from nltk.stem.porter import PorterStemmer
@@ -54,7 +55,6 @@ def word_remover(word):
 
 
 def tokener(paragraf):
-    tokened_paragrafer = []
     for i, avsnitt in enumerate(paragraf):
         paragraf[i] = avsnitt.split(" ")
     return paragraf
@@ -72,13 +72,16 @@ def lower_case(paragraf):
         paragrafer.append(ord_lower)
     return paragrafer
 
+
+punc = list(string.punctuation)
+punc.append('\r\n')
 def remove_punc(paragraf):
     paras = []
     #goes through each word in the paragraph and removes whitespace, etc.
     for p in paragraf:
         words = []
         for word in p:
-            temp = replace_multiple(word, ['.',',',';',':','\r\n'], ' ')
+            temp = replace_multiple(word, punc, ' ')
             templist = temp.split(' ')
             for i in templist:
                 if i == '':
@@ -118,6 +121,34 @@ def word_frequency(paragraphs, word):
             if w == word:
                 freqDist[w] += 1
     return freqDist
+
+
+#Task 2
+
+
+
+def stopwords_file_fixer():
+    stopwords = open_file("/Users/perhaagensen/Documents/Høst2019/InfoGjen Øvinger/tdt4117Oving3/common-english-words.txt")
+    file = stopwords.read()
+    stopwordlist = file.split(',')
+    return stopwordlist
+
+
+
+def stopword_id(dict, stopwordlist):
+    ids = []
+    for word in stopwordlist:
+        try:
+            ids.append(dict.token2id[word])
+        except:
+            pass
+    return ids
+
+
+
+
+
+
 
 
 
