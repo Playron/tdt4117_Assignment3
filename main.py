@@ -79,6 +79,38 @@ print("The three topics are related in the way that they are structured such tha
 
 
 
+#Task 4
+
+#4.1
+def preprocessing(query):
+    query = query.split()
+    stemmed_query = []
+    for word in query:
+        stemmed_query.append(stemmer.stem(word.lower().strip(string.punctuation + '\n\r\t')))
+    return stemmed_query
+
+def preprocessing_(q):
+    list = q.split()
+    for i in range(len(list)):
+        list[i] = stemmer.stem(list[i].strip(string.punctuation).lower())
+    return list
+
+query = preprocessing("What is the function of money?")
+query = dict.doc2bow(query)
+print(query)
+
+#4.2
+tfidf_query = tfidf_model[query]
+tfidf_index = gensim.similarities.MatrixSimilarity(tfidf_corpus)
+
+def print_weights(tfidf_query):
+    for weight_tuple in tfidf_query:
+        print(dict.get(weight_tuple[0]), ":", weight_tuple[1])
+
+
+print_weights(tfidf_query)
+
+
 
 
 
